@@ -5,7 +5,7 @@ import { Profile } from '../../model/profile';
 @Injectable()
 export class FindMeFirebaseProvider {
   public deviceId = "";
-  public data: Profile = { displayName: "", mobileNo: "" };
+  public data: Profile = { displayName: "", mobileNo: "", homeLatitude: "", homeLongitude: "" };
   public notifyOther = [];
   public notifyMe = [];
 
@@ -20,7 +20,7 @@ export class FindMeFirebaseProvider {
         }
         else {
           this.updataPersonalData();
-          callback({ displayName: "", mobileNo: "", condition: "" }, caller);
+          callback(this.data, caller);
         }
       });
     }
@@ -88,26 +88,19 @@ export class FindMeFirebaseProvider {
       )
   }
 
-  addRecipient(recipient: Profile) {
-
-    firebase.database().ref('findMe/notify-other/mobile/' + this.data.mobileNo + '/' + this.deviceId)
-      .orderByChild("mobileNo").equalTo(recipient.mobileNo).once("value", snapshot => {
+  private findAddRecipient(path: string, findBy: string, person: Profile)
+  {
+    firebase.database().ref(path)
+      .orderByChild(findBy).equalTo(person.mobileNo).once("value", snapshot => {
         const profile = snapshot.val();
-        if (!profile) {
-          firebase.database().ref('findMe/notify-other/mobile/' + this.data.mobileNo + '/' + this.deviceId)
-            .push(recipient);
-        }
+        if (!profile) firebase.database().ref(path).push(person);
       }
-      );
+    );
+  }
 
-    firebase.database().ref('findMe/notify-me/mobile/' + recipient.mobileNo)
-      .orderByChild("mobileNo").equalTo(this.data.mobileNo).once("value", snapshot => {
-        const profile = snapshot.val();
-        if (!profile) {
-          firebase.database().ref('findMe/notify-me/mobile/' + recipient.mobileNo)
-            .push(this.data);
-        }
-      })
+  addRecipient(recipient: Profile) {
+    this.findAddRecipient('findMe/notify-other/mobile/' + this.data.mobileNo + '/' + this.deviceId, 'mobileNo', recipient);
+    this.findAddRecipient('findMe/notify-me/mobile/' + recipient.mobileNo, 'mobileNo', this.data);
   }
 }
 

@@ -10,8 +10,7 @@ import { SigninPage } from '../pages/signin/signin';
 import { FindMeFirebaseProvider } from '../providers/find-me-firebase/find-me-firebase';
 
 import { UniqueDeviceID  } from '@ionic-native/unique-device-id';
-
-
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,8 @@ import { UniqueDeviceID  } from '@ionic-native/unique-device-id';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FindMeFirebaseProvider,
-    UniqueDeviceID
+    UniqueDeviceID,
+    Geolocation
   ]
 })
 export class AppModule {}

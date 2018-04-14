@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular';
 import { FindMeFirebaseProvider } from '../../providers/find-me-firebase/find-me-firebase';
-import { Observable } from 'rxjs/Observable';
 import { Profile } from '../../model/profile';
 
 @IonicPage({
