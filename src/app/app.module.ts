@@ -9,6 +9,11 @@ import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
 
+import {AngularFireModule } from 'angularfire2';
+import { FIREBASE_CONFIG } from './firebase_credentials';
+
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -16,7 +21,9 @@ import { CallNumber } from '@ionic-native/call-number';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

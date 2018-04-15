@@ -32,7 +32,7 @@ export class HomePage {
 
   findMe(){
      let geoLocationOptions = {
-      maximumAge: 3000,
+      maximumAge: 1000,
       enableHighAccuracy: true
     } 
 
@@ -40,12 +40,6 @@ export class HomePage {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       
       var strCoord = this.addtlInfo (position.coords.latitude, position.coords.longitude);
-      //var strLati = parseFloat(position.coords.latitude + ' ');
-      //var strLong = parseFloat(position.coords.longitude + ' ');
-      //var strCoord = 'Name = <b>' + this.myName + '</b> <br/>' + 
-      //               'Tel/HP = ' + this.myTelnbr + '<br/>'     +
-      //               '(click on icon to call HP) <br/>' + 
-      //               'Lat = ' + strLati + ', Long = ' + strLong;
      
       let mapOptions = {
         center: latLng,
@@ -71,12 +65,6 @@ export class HomePage {
       let updLocation = new google.maps.LatLng(data.coords.latitude, data.coords.longitude);
       
       var strCoord = this.addtlInfo (data.coords.latitude, data.coords.longitude);
-      //var strLati = parseFloat(data.coords.latitude + ' ');
-      //var strLong = parseFloat(data.coords.longitude + ' ');
-      //var strCoord = 'Name = <b>' + this.myName + '</b> <br/>' + 
-      //               'Tel/HP = ' + this.myTelnbr + '<br/>'     +
-      //               '(click on icon to call HP) <br/>' + 
-      //               'Lat = ' + strLati + ', Long = ' + strLong;
 
       this.moveMarker(updLocation, moveImage, strCoord);
     });
