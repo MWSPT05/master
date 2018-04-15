@@ -83,7 +83,6 @@ export class HomePage {
   addMarker(location, curPosImage, strCoord) {
     this.marker = new google.maps.Marker({
       map: this.map,
-      title: strCoord,
       animation: google.maps.Animation.DROP,
       position: location,
       icon: curPosImage
@@ -110,7 +109,6 @@ export class HomePage {
   moveMarker(newLocation, moveImage, strCoord){
     this.marker = new google.maps.Marker({
       map: this.map,
-      title: strCoord,      
       position: newLocation,
       icon: moveImage
     });
