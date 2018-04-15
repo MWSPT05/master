@@ -6,18 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { SigninPage } from '../pages/signin/signin';
-import { FindMeFirebaseProvider } from '../providers/find-me-firebase/find-me-firebase';
-
-import { UniqueDeviceID  } from '@ionic-native/unique-device-id';
-
-
+import { Geolocation } from '@ionic-native/geolocation';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    SigninPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -26,15 +21,14 @@ import { UniqueDeviceID  } from '@ionic-native/unique-device-id';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    SigninPage
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FindMeFirebaseProvider,
-    UniqueDeviceID
+    Geolocation,
+    CallNumber,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
