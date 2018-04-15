@@ -85,4 +85,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.1.58:8101" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>
